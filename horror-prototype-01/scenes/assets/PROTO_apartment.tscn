@@ -1,0 +1,189 @@
+[gd_scene format=3 uid="uid://dkw82oyjcjddo"]
+
+[ext_resource type="PackedScene" uid="uid://dwlmuh2a7tcsu" path="res://scenes/assets/SM_table01.tscn" id="1_f52a2"]
+[ext_resource type="Texture2D" uid="uid://whaa830kth42" path="res://textures/wood/dark-wood-floor-1.png" id="2_mugdr"]
+[ext_resource type="Material" uid="uid://wlatrkvvghl" path="res://textures/mock_wall.tres" id="4_fvpvl"]
+[ext_resource type="PackedScene" uid="uid://dbeakm7amggp8" path="res://scenes/assets/SM_nightstand.tscn" id="4_vw3j1"]
+[ext_resource type="Texture2D" uid="uid://txc73fvfyst3" path="res://textures/tijolo.png" id="5_8dri4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f52a2"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("2_mugdr")
+metallic_specular = 0.0
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m4m55"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("5_8dri4")
+uv1_triplanar = true
+
+[node name="Apartment" type="Node3D" unique_id=2021761439]
+
+[node name="Props" type="Node3D" parent="." unique_id=529186044]
+
+[node name="pc_table" parent="Props" unique_id=1281605484 instance=ExtResource("1_f52a2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 3.8, 0, 2.2)
+
+[node name="nightstandV1" parent="Props" unique_id=235458384 instance=ExtResource("4_vw3j1")]
+transform = Transform3D(-7.2386065e-08, 0, -1.6560001, 0, 1.6560001, 0, 1.6560001, 0, -7.2386065e-08, -4, 0, 7.8)
+
+[node name="nightstandV2" parent="Props" unique_id=1376645344 instance=ExtResource("4_vw3j1")]
+transform = Transform3D(-7.2386065e-08, 0, -1.6560001, 0, 1.6560001, 0, 1.6560001, 0, -7.2386065e-08, -4, 0, 5.2)
+
+[node name="Bed" type="CSGBox3D" parent="Props" unique_id=2083531137]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.161, 0.45000005, 6.500001)
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+size = Vector3(1.4, 0.7, 2.6000001)
+
+[node name="Divider" type="CSGBox3D" parent="Props" unique_id=1096136650]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0000001, 0.6, -5.0627065)
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+size = Vector3(2.2, 1, 0.4)
+
+[node name="Lights" type="Node3D" parent="Props" unique_id=1720166072]
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Props/Lights" unique_id=1505273477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53382635, 1.8203083, -2.388758)
+light_color = Color(0.8559945, 0.4645881, 0.26085788, 1)
+light_energy = 16.0
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+omni_range = 11.625
+omni_attenuation = 1.44
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="Props/Lights" unique_id=878178967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 2.850409, -6.988758)
+visible = false
+light_color = Color(0.96862745, 0.7294118, 0.6156863, 1)
+light_energy = 2.485
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="Props/Lights" unique_id=116314969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.850409, -6.988758)
+visible = false
+light_color = Color(0.96862745, 0.7294118, 0.6156863, 1)
+light_energy = 2.485
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Props/Lights" unique_id=1839655163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 2.850409, 2.211242)
+visible = false
+light_color = Color(0.96862745, 0.7294118, 0.6156863, 1)
+light_energy = 2.485
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Props/Lights" unique_id=1084105238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6000004, 2.850409, 2.211242)
+visible = false
+light_color = Color(0.96862745, 0.7294118, 0.6156863, 1)
+light_energy = 2.485
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Props/Lights" unique_id=1086529581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19999957, 2.850409, 6.511242)
+visible = false
+light_color = Color(0.96862745, 0.7294118, 0.6156863, 1)
+light_energy = 2.485
+light_specular = 1.49
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Structure" type="CSGCombiner3D" parent="." unique_id=205388785]
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+
+[node name="Walls" type="CSGCombiner3D" parent="Structure" unique_id=1963022372]
+
+[node name="WestWall" type="CSGBox3D" parent="Structure/Walls" unique_id=754161608]
+transform = Transform3D(0.5, 0, 0, 0, 3.6, 0, 0, 0, 17, 4.745, 1.8, 0)
+material = ExtResource("4_fvpvl")
+
+[node name="EastWall" type="CSGCombiner3D" parent="Structure/Walls" unique_id=352840890]
+
+[node name="EastWallBase" type="CSGBox3D" parent="Structure/Walls/EastWall" unique_id=1022991360]
+transform = Transform3D(0.5, 0, 0, 0, 3.6, 0, 0, 0, 17, -4.739, 1.8, 0)
+material = ExtResource("4_fvpvl")
+
+[node name="EastWallHole" type="CSGBox3D" parent="Structure/Walls/EastWall" unique_id=335876008]
+transform = Transform3D(0.715, 0, 0, 0, 3, 0, 0, 0, 4.3, -4.729507, 1.8186713, -2.2)
+operation = 2
+
+[node name="EastWallHole2" type="CSGBox3D" parent="Structure/Walls/EastWall" unique_id=452753995]
+transform = Transform3D(0.715, 0, 0, 0, 1.5, 0, 0, 0, 2.5, -4.729507, 1.7186713, -6.8999996)
+operation = 2
+
+[node name="NorthWall" type="CSGBox3D" parent="Structure/Walls" unique_id=1557473560]
+transform = Transform3D(9, 0, 0, 0, 3.6, 0, 0, 0, 0.5, 0, 1.8, 8.75)
+
+[node name="BedRoom" type="CSGCombiner3D" parent="Structure/Walls" unique_id=212681063]
+
+[node name="BedRoomWall" type="CSGBox3D" parent="Structure/Walls/BedRoom" unique_id=1514104486]
+transform = Transform3D(9, 0, 0, 0, 3.6, 0, 0, 0, 0.5, 0, 1.8, 3.75)
+material = ExtResource("4_fvpvl")
+
+[node name="BedRoomDoorHole" type="CSGBox3D" parent="Structure/Walls/BedRoom" unique_id=911362556]
+transform = Transform3D(1.3, 0, 0, 0, 2.5, 0, 0, 0, 0.5, 0.8000001, 1, 3.75)
+operation = 2
+
+[node name="BathRoomDoor" type="CSGCombiner3D" parent="Structure/Walls" unique_id=1043674198]
+
+[node name="BathRoomDoorBase" type="CSGBox3D" parent="Structure/Walls/BathRoomDoor" unique_id=664664620]
+transform = Transform3D(0.5, 0, 0, 0, 3.6, 0, 0, 0, 3, -0.29728177, 1.8, 2)
+material = ExtResource("4_fvpvl")
+
+[node name="BathRoomDoorHole" type="CSGBox3D" parent="Structure/Walls/BathRoomDoor" unique_id=1524747507]
+transform = Transform3D(0.61, 0, 0, 0, 2.5, 0, 0, 0, 1.3, -0.297, 1, 2.7)
+operation = 2
+
+[node name="BathRoomWall" type="CSGBox3D" parent="Structure/Walls" unique_id=1825650683]
+transform = Transform3D(4.5, 0, 0, 0, 3.6, 0, 0, 0, 0.5, -2.3, 1.8, 0.65)
+material = ExtResource("4_fvpvl")
+
+[node name="LivingRoomWall" type="CSGBox3D" parent="Structure/Walls" unique_id=1888460761]
+transform = Transform3D(4.5, 0, 0, 0, 3.6, 0, 0, 0, 0.5, -2.3, 1.8, -5.0500007)
+material = ExtResource("4_fvpvl")
+
+[node name="SouthWall" type="CSGBox3D" parent="Structure/Walls" unique_id=817504846]
+transform = Transform3D(9, 0, 0, 0, 3.6, 0, 0, 0, 0.5, 0, 1.8, -8.75)
+material = ExtResource("4_fvpvl")
+
+[node name="Laundry" type="CSGCombiner3D" parent="Structure/Walls" unique_id=1023957800]
+layers = 4
+
+[node name="LaundryWall" type="CSGBox3D" parent="Structure/Walls/Laundry" unique_id=1451254410]
+transform = Transform3D(0.1, 0, 0, 0, 3.6, 0, 0, 0, 3.395, -2.6, 1.8, -7)
+layers = 4
+
+[node name="LaundryWallHole" type="CSGBox3D" parent="Structure/Walls/Laundry" unique_id=1833678812]
+transform = Transform3D(0.1, 0, 0, 0, 3.335, 0, 0, 0, 2.875, -2.6, 1.6999999, -6.9)
+operation = 2
+
+[node name="ApartmFloor" type="CSGBox3D" parent="Structure" unique_id=772870227]
+transform = Transform3D(9, 0, 0, 0, 0.1, 0, 0, 0, 17, 0, 0, 0)
+material = SubResource("StandardMaterial3D_f52a2")
+
+[node name="ApartmCeiling" type="CSGBox3D" parent="Structure" unique_id=2001146499]
+transform = Transform3D(9.8, 0, 0, 0, 0.1, 0, 0, 0, 17.41, 0, 3.6, 0)
+material = SubResource("StandardMaterial3D_m4m55")

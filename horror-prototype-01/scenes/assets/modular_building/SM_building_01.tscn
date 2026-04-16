@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://6q5w6bw1jrxk"]
+
+[ext_resource type="PackedScene" uid="uid://jxcnlae0vtrs" path="res://scenes/assets/modular_building/building_side01.tscn" id="1_rycue"]
+
+[node name="Building01" type="Node3D"]
+
+[node name="building_side_01" parent="." instance=ExtResource("1_rycue")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -0.0063210875)
+
+[node name="building_side_04" parent="." instance=ExtResource("1_rycue")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009594679, 0, -0.69839215)
+
+[node name="building_side_02" parent="." instance=ExtResource("1_rycue")]
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 0.35144734, 0, -0.34108844)
+
+[node name="building_side_03" parent="." instance=ExtResource("1_rycue")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -0.34042794, 0, -0.3583224)

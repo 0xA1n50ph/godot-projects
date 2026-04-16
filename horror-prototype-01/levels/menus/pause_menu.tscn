@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://cuxgseg1bnqop"]
+
+[ext_resource type="Script" uid="uid://cdmsbw7i58am4" path="res://scripts/ShaderReponsiveness.gd" id="1_1p1vh"]
+[ext_resource type="Script" uid="uid://bt6wrjlloyi5d" path="res://scripts/pause_menu.gd" id="1_r5b21"]
+[ext_resource type="Shader" uid="uid://b5jfhivyetbo" path="res://addons/GodotRetro/Screen Shaders/VHSPause.gdshader" id="2_v8nav"]
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://ui_themes/Classic95/Classic95.tres" id="3_wgwh8"]
+[ext_resource type="FontFile" uid="uid://b28kn5k87ahcw" path="res://fonts/PixelTwist.ttf" id="5_e3ugx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r5b21"]
+shader = ExtResource("2_v8nav")
+shader_parameter/shake_amount_x = 250.0
+shader_parameter/shake_amount_y = 40.0
+shader_parameter/white_hlines = 12.21600058026
+shader_parameter/white_vlines = 10.42400049514
+
+[sub_resource type="LabelSettings" id="LabelSettings_v8nav"]
+font = ExtResource("5_e3ugx")
+font_size = 74
+font_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1913040523]
+layer = 100
+script = ExtResource("1_r5b21")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="." unique_id=946387230]
+position = Vector2(319.00003, 240.50003)
+scale = Vector2(3.2099998, 2.4050002)
+
+[node name="ColorRect" type="ColorRect" parent="BackBufferCopy" unique_id=917658642]
+material = SubResource("ShaderMaterial_r5b21")
+offset_left = -99.37695
+offset_top = -99.5842
+offset_right = 99.999985
+offset_bottom = 100.83157
+color = Color(1, 1, 1, 0.3019608)
+script = ExtResource("1_1p1vh")
+
+[node name="MenuContainer" type="Control" parent="." unique_id=1055688981]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MenuContainer" unique_id=1766304090]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.500008
+offset_top = -14.5
+offset_right = 43.500008
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "paused"
+label_settings = SubResource("LabelSettings_v8nav")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="MenuContainer" unique_id=1557445579]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.291
+anchor_top = 0.377
+anchor_right = 0.712
+anchor_bottom = 0.63100004
+offset_left = -0.2400055
+offset_top = 0.039993286
+offset_right = 0.32000732
+offset_bottom = 0.11999512
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_wgwh8")

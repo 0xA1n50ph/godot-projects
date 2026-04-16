@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bciu0s8xo1xsd"]
+
+[ext_resource type="Script" uid="uid://om1606j83u6n" path="res://Scripts/player.gd" id="1_m8awc"]
+
+[sub_resource type="Gradient" id="Gradient_6o0q8"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0.34901962, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_omdf0"]
+gradient = SubResource("Gradient_6o0q8")
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m8awc"]
+radius = 7.0
+height = 104.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1153056723]
+motion_mode = 1
+script = ExtResource("1_m8awc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1501649254]
+scale = Vector2(1.62, 0.23)
+texture = SubResource("GradientTexture2D_omdf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=95169509]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_m8awc")

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://dqdcdaotwxgmx"]
+
+[ext_resource type="PackedScene" uid="uid://brgy4kusm0qcg" path="res://glb_imports/torch_v1.glb" id="1_7di6y"]
+[ext_resource type="Texture2D" uid="uid://c8ukdunu8jonf" path="res://textures/concrete/textura_concreto.png" id="2_wu6d4"]
+[ext_resource type="Texture2D" uid="uid://cxs4nfdjr273x" path="res://textures/concrete/textura_concreto_normal.png" id="3_ldqym"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldqym"]
+albedo_texture = ExtResource("2_wu6d4")
+normal_texture = ExtResource("3_ldqym")
+uv1_scale = Vector3(1, 1.21, 1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 144.89046
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kba"]
+albedo_color = Color(0.16930324, 0.08175402, 0.033988196, 1)
+metallic = 0.87
+metallic_specular = 0.0
+roughness = 0.76
+
+[node name="torch_v1" instance=ExtResource("1_7di6y")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_ldqym")
+surface_material_override/1 = SubResource("StandardMaterial3D_37kba")

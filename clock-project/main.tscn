@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://c0htsf7x83fn0"]
+
+[ext_resource type="Script" uid="uid://dgk0beqjxaa2q" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cvbk2f6kc3bnr" path="res://clock.tscn" id="2_0xm2m"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xm2m"]
+size = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.3478171, 0.34781694, 0.34781674, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h2yge"]
+gradient = SubResource("Gradient_0xm2m")
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource("1_ig7tw")
+clock_scene = ExtResource("2_0xm2m")
+time_scale_max = 200.0
+
+[node name="BottomLimit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomLimit"]
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+shape = SubResource("RectangleShape2D_0xm2m")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="Background" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_h2yge")
+
+[connection signal="body_entered" from="BottomLimit" to="." method="_on_bottom_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

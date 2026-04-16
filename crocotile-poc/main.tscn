@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bpjfvmm3q6jes"]
+
+[ext_resource type="PackedScene" uid="uid://b4ymwi45awd15" path="res://MS_SampleHome.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://kcbvgulbwcb2" path="res://Player.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ce3pno1bvadgj" path="res://MS_SampleHome_V1.tscn" id="3_h2yge"]
+
+[sub_resource type="Environment" id="Environment_h2yge"]
+background_mode = 1
+tonemap_mode = 4
+tonemap_exposure = 0.45
+tonemap_agx_contrast = 1.4
+ssao_enabled = true
+
+[node name="World" type="Node3D" unique_id=1326286261]
+
+[node name="SampleHome" parent="." unique_id=564773259 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(0.2685259, 0, 0, 0, 0.2685259, 0, 0, 0, 0.2685259, 9.440966, 0, -6.181002)
+
+[node name="Player" parent="." unique_id=927378963 instance=ExtResource("2_0xm2m")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10.012854, 1, -6)
+
+[node name="SampleHome_V1" parent="." unique_id=1516976943 instance=ExtResource("3_h2yge")]
+transform = Transform3D(0.25999996, 0, 0, 0, 0.25999996, 0, 0, 0, 0.25999996, 0, 0, -5.9805837)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1684866678]
+environment = SubResource("Environment_h2yge")

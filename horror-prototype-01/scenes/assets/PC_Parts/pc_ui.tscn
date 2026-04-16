@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://bcyc4otms0pci"]
+
+[ext_resource type="Texture2D" uid="uid://cl4gofo2yq3jm" path="res://textures/PC/pc_bg.jpg" id="1_2qt8e"]
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://ui_themes/Classic95/Classic95.tres" id="1_iemnt"]
+[ext_resource type="Script" uid="uid://cb1aw5oi80p7i" path="res://scenes/assets/PC_Parts/pc_ui.gd" id="1_lwusx"]
+[ext_resource type="Texture2D" uid="uid://cae2d4ws0a81k" path="res://icon.svg" id="2_y50fu"]
+[ext_resource type="Texture2D" uid="uid://bcsbcmcs0wn40" path="res://textures/PC/mouse_cursor.png" id="3_dqxkg"]
+[ext_resource type="FontFile" uid="uid://dutx2rjw1ebtw" path="res://fonts/windows-bold.ttf" id="5_dqxkg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_72s8s"]
+font = ExtResource("5_dqxkg")
+font_color = Color(0, 0, 0, 1)
+
+[node name="pc_ui" type="Control" unique_id=2120988253]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_iemnt")
+script = ExtResource("1_lwusx")
+
+[node name="MouseCursor" type="Sprite2D" parent="." unique_id=2139337888]
+top_level = true
+z_index = 1
+position = Vector2(16, 16)
+scale = Vector2(0.7461163, 0.7340821)
+texture = ExtResource("3_dqxkg")
+
+[node name="PCBackground" type="TextureRect" parent="." unique_id=997123207]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 4693.0
+offset_bottom = 3520.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.120027155, 0.12003409)
+texture = ExtResource("1_2qt8e")
+
+[node name="Taskbar" type="Panel" parent="." unique_id=1976267908]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -25.0
+offset_right = 640.0
+grow_vertical = 0
+
+[node name="Button" type="Button" parent="Taskbar" unique_id=936591755]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 51.0
+offset_bottom = 34.0
+scale = Vector2(0.88, 0.625)
+text = "Start"
+
+[node name="Clock" type="Label" parent="Taskbar" unique_id=856728434]
+layout_mode = 0
+offset_left = 572.0
+offset_top = 1.0
+offset_right = 632.0
+offset_bottom = 24.0
+text = "12:00"
+label_settings = SubResource("LabelSettings_72s8s")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Desktop" type="Control" parent="." unique_id=11960759]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="EmailIcon" type="TextureButton" parent="Desktop" unique_id=451886785]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 29.0
+offset_right = 149.0
+offset_bottom = 157.0
+scale = Vector2(0.3193745, 0.3193745)
+texture_normal = ExtResource("2_y50fu")
+
+[node name="Label" type="Label" parent="Desktop/EmailIcon" unique_id=1932778598]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -53.680077
+offset_top = 3.0
+offset_right = -2.6800766
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.0755172, 2.0755172)
+text = "Emails"
+
+[node name="EmailWindow" type="Panel" parent="." unique_id=1282603560]
+visible = false
+layout_mode = 0
+offset_left = 187.0
+offset_top = 73.0
+offset_right = 227.0
+offset_bottom = 113.0
+scale = Vector2(7.203339, 7.203339)

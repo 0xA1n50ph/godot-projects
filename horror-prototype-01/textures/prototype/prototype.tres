@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://d1814whjsn4u3"]
+
+[ext_resource type="Texture2D" uid="uid://sl0ra17lo1ll" path="res://textures/prototype/proto.png" id="1_bf2aa"]
+[ext_resource type="Texture2D" uid="uid://ct3tniku03ao6" path="res://textures/prototype/proto_specular.png" id="2_2bacb"]
+
+[resource]
+albedo_texture = ExtResource("1_bf2aa")
+normal_texture = ExtResource("2_2bacb")
+refraction_enabled = true
+uv1_scale = Vector3(12.475, 12.475, 12.475)
+uv1_offset = Vector3(0.485, 0, 0)

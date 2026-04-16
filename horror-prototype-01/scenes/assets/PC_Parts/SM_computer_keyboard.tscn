@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://6jmtajqm1kx2"]
+
+[ext_resource type="PackedScene" uid="uid://8ook7m3qgo2t" path="res://glb_imports/computer_keyboard.glb" id="1_7n05y"]
+
+[node name="computer_keyboard2" unique_id=88150139 instance=ExtResource("1_7n05y")]

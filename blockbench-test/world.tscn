@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn6fh0lwodfn2"]
+
+[ext_resource type="PackedScene" uid="uid://c8essskdbuskx" path="res://blockbench_room.tscn" id="1_fj7yv"]
+[ext_resource type="Script" uid="uid://bjw2l1ese8xkk" path="res://camera.gd" id="2_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://b0gtevkyv77tq" path="res://new_room.tscn" id="3_tlwt5"]
+
+[node name="World" type="Node3D"]
+
+[node name="blockbench_export" parent="." instance=ExtResource("1_fj7yv")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 17.307804, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4757636, 0)
+script = ExtResource("2_tlwt5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.67995346, 0.7332553, 0, -0.7332553, 0.67995346, 0, 84.231316, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.7201834, -0.5964031, -45.99037)
+size = Vector3(1, 14, 1)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.524237, 0.70546913, -45.99037)
+size = Vector3(1, 14, 1)
+
+[node name="blockbench_export2" parent="." instance=ExtResource("3_tlwt5")]

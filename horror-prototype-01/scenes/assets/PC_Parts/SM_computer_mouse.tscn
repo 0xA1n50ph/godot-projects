@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cnr3w2nqen5bn"]
+
+[ext_resource type="PackedScene" uid="uid://0xradlntcdgr" path="res://glb_imports/computer_mouse.glb" id="1_i2bpw"]
+
+[node name="computer_mouse2" unique_id=1216368163 instance=ExtResource("1_i2bpw")]

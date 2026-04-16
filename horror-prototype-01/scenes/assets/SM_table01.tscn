@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://dwlmuh2a7tcsu"]
+
+[ext_resource type="PackedScene" uid="uid://nav32p0oq448" path="res://glb_imports/pc_table.glb" id="1_5gj1d"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5gj1d"]
+points = PackedVector3Array(-1, 0, -1, -1, 0.093522064, -1, 1, 0, -1, -1, 0, 1, -1, 0.093522064, 1, 1, 0.093522064, -1, 1, 0, 1, 1, 0.093522064, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sgskl"]
+points = PackedVector3Array(1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ccwci"]
+points = PackedVector3Array(1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1, -1, -1, -1)
+
+[node name="pc_table" unique_id=1281605484 instance=ExtResource("1_5gj1d")]
+
+[node name="TableTop" parent="." index="0" unique_id=2107041891]
+transform = Transform3D(0.5501595, 0, 0, 0, 0.6792093, 0, 0, 0, 1.2225767, 0, 0.8613408, 0.002359011)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="TableTop" index="0" unique_id=641435579]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TableTop/StaticBody3D" index="0" unique_id=347450408]
+shape = SubResource("ConvexPolygonShape3D_5gj1d")
+
+[node name="RightLeg" parent="." index="1" unique_id=1010298021]
+transform = Transform3D(0.5088974, 0, 0, 0, 0.44148603, 0, 0, 0, 0.030564422, 0, 0.4209666, 1.1050451)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RightLeg" index="0" unique_id=1320067351]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightLeg/StaticBody3D" index="0" unique_id=1765376629]
+shape = SubResource("ConvexPolygonShape3D_sgskl")
+
+[node name="LeftLeg" parent="." index="2" unique_id=674112460]
+transform = Transform3D(0.5088974, 0, 0, 0, 0.44148603, 0, 0, 0, 0.030564422, 0, 0.4209666, -1.0891978)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="LeftLeg" index="0" unique_id=896053275]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftLeg/StaticBody3D" index="0" unique_id=85950003]
+shape = SubResource("ConvexPolygonShape3D_ccwci")

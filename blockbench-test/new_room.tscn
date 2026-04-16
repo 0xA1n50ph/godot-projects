@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0gtevkyv77tq"]
+
+[ext_resource type="PackedScene" uid="uid://dvy7443ucn2vg" path="res://room_test_import/room-test.gltf" id="1_qpkgd"]
+[ext_resource type="Texture2D" uid="uid://pyroalu2jaad" path="res://textures/wood.png" id="2_cdvg3"]
+[ext_resource type="Material" uid="uid://ce71aqr8llces" path="res://textures/wall.tres" id="3_6p4ri"]
+[ext_resource type="Material" uid="uid://cbwcw541lw5ll" path="res://textures/wall_new.tres" id="4_cs7kj"]
+[ext_resource type="Shader" uid="uid://dfsqlc1q3eut8" path="res://glass.gdshader" id="5_vnpk6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sfia5"]
+albedo_texture = ExtResource("2_cdvg3")
+uv1_scale = Vector3(6, 6, 6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnbcy"]
+render_priority = 0
+shader = ExtResource("5_vnpk6")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/specular = 0.0
+shader_parameter/offset = 0.05
+shader_parameter/opacity = 0.9
+
+[node name="blockbench_export" instance=ExtResource("1_qpkgd")]
+transform = Transform3D(32, 0, 0, 0, 32, 0, 0, 0, 32, 0, 0, 0)
+
+[node name="floor" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_sfia5")
+
+[node name="wall_window" parent="." index="3"]
+material_override = ExtResource("3_6p4ri")
+
+[node name="wall" parent="." index="4"]
+material_override = ExtResource("4_cs7kj")
+
+[node name="wall2" parent="." index="5"]
+material_override = ExtResource("4_cs7kj")
+
+[node name="mesh" parent="." index="6"]
+material_override = ExtResource("4_cs7kj")
+
+[node name="window" parent="." index="7"]
+material_override = SubResource("ShaderMaterial_lnbcy")

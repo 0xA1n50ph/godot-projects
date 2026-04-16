@@ -1,0 +1,9 @@
+#Godot Files
+**/.godot/
+
+#Android
+**/android/
+
+#MacOS
+.DS_Store
+**/.DS_Store

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dy61hp07jxkid"]
+
+[ext_resource type="PackedScene" uid="uid://lhhfkpw5wf1t" path="res://glb_imports/computer_monitor.glb" id="1_pwoee"]
+
+[node name="computer_monitor2" unique_id=2127784736 instance=ExtResource("1_pwoee")]
+
+[node name="computer_monitor" parent="." index="0" unique_id=130592835]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)

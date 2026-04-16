@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5y5t6jddiodr"]
+
+[ext_resource type="PackedScene" uid="uid://b47fe73cllur5" path="res://scenes/gun.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://6uj2ov0bpvsr" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Texture2D" uid="uid://cuyh8hew637ju" path="res://assets/player/reticle.png" id="3_qhqgy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8vuu"]
+albedo_color = Color(1, 0.24705882, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+material = SubResource("StandardMaterial3D_u8vuu")
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+script = ExtResource("1_g2els")
+
+[node name="CollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="Camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Gun" parent="Camera" instance=ExtResource("1_3vyb7")]
+transform = Transform3D(-0.545, 0, -8.2292715e-08, 0, 0.545, 0, 8.2292715e-08, 0, -0.545, 0.5221192, -0.29084897, -0.6345799)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.86805e-08, 0, -0.90000004)
+light_color = Color(1, 1, 0.39215687, 1)
+light_size = 0.082
+shadow_enabled = true
+spot_range = 3.0
+spot_angle = 36.224304
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_u8vuu")
+
+[node name="Reticle" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_qhqgy")
+expand_mode = 1

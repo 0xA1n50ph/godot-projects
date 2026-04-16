@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://jxcnlae0vtrs"]
+
+[ext_resource type="PackedScene" uid="uid://dx23kyt0ntgwm" path="res://glb_imports/building_side_01.glb" id="1_fbtq0"]
+[ext_resource type="Texture2D" uid="uid://txc73fvfyst3" path="res://textures/tijolo.png" id="2_yau51"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5m4b2"]
+albedo_texture = ExtResource("2_yau51")
+metallic_specular = 0.0
+uv1_scale = Vector3(13.21, 13.21, 13.21)
+uv1_offset = Vector3(-0.04, 0, -0.195)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i0wj1"]
+albedo_color = Color(0.50534403, 0.5053441, 0.50534403, 1)
+metallic = 1.0
+metallic_specular = 0.14
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yau51"]
+albedo_color = Color(0.37405, 0.42170268, 0.6512705, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+emission_energy_multiplier = 4.13
+
+[node name="building_side_01" instance=ExtResource("1_fbtq0")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="building_face_01" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_5m4b2")
+surface_material_override/3 = SubResource("StandardMaterial3D_i0wj1")
+surface_material_override/4 = SubResource("StandardMaterial3D_yau51")

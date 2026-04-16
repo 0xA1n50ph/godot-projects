@@ -1,0 +1,245 @@
+[gd_scene format=3 uid="uid://bkrqbk8ethxly"]
+
+[ext_resource type="PackedScene" uid="uid://bciu0s8xo1xsd" path="res://Scenes/S_Player.tscn" id="1_s41d2"]
+[ext_resource type="Script" uid="uid://c5s0tcqrnxorx" path="res://Scripts/level.gd" id="1_wav5q"]
+[ext_resource type="PackedScene" uid="uid://cc038msjjfjp5" path="res://Scenes/S_Ball.tscn" id="2_gtnvv"]
+[ext_resource type="Shader" uid="uid://ghpbc4q7qwe7" path="res://Shaders/background_waves.gdshader" id="4_bgshader"]
+[ext_resource type="Texture2D" uid="uid://b7i1fibgp67ex" path="res://Textures/paddle.png" id="5_uhyyw"]
+[ext_resource type="AudioStream" uid="uid://bwoq4aic6jmgk" path="res://Ost/ost_1.mp3" id="6_t80w2"]
+[ext_resource type="Shader" uid="uid://oc1vxtmx1v48" path="res://addons/GodotRetro/Screen Shaders/TV.gdshader" id="7_ecu0b"]
+[ext_resource type="Script" uid="uid://co68fg7cnndvg" path="res://Scripts/ShaderReponsiveness.gd" id="8_t2u7g"]
+[ext_resource type="Shader" uid="uid://cvixww5rfjpe2" path="res://addons/GodotRetro/Screen Shaders/LensDistortion.gdshader" id="9_t2u7g"]
+[ext_resource type="Shader" uid="uid://bf4ogqhne6qtr" path="res://addons/GodotRetro/Screen Shaders/Aditional Shaders/Sharpness.gdshader" id="10_vx8ih"]
+[ext_resource type="PackedScene" uid="uid://bn3oivxxorffe" path="res://Scenes/S_PauseMenu.tscn" id="11_ugh17"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtnvv"]
+size = Vector2(29.25, 1202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ugh17"]
+
+[sub_resource type="Gradient" id="Gradient_ugh17"]
+offsets = PackedFloat32Array(0, 0.7034483, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.85172415, 0.85172415, 0.85172415, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_eabcg"]
+gradient = SubResource("Gradient_ugh17")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bg"]
+shader = ExtResource("4_bgshader")
+shader_parameter/emitter_count = 4
+shader_parameter/emitters = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/frequencies = PackedFloat32Array(0, 0, 0, 0, 0, 0)
+shader_parameter/speeds = PackedFloat32Array(0, 0, 0, 0, 0, 0)
+shader_parameter/amplitudes = PackedFloat32Array(0, 0, 0, 0, 0, 0)
+shader_parameter/phase_offsets = PackedFloat32Array(0, 0, 0, 0, 0, 0)
+shader_parameter/color_deep = Color(0.02, 0.02, 0.12, 1)
+shader_parameter/color_mid = Color(0.05, 0.15, 0.35, 1)
+shader_parameter/color_bright = Color(0.15, 0.45, 0.65, 1)
+shader_parameter/aspect_ratio = 1.778
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xto7t"]
+size = Vector2(1208, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecu0b"]
+shader = ExtResource("7_ecu0b")
+shader_parameter/vertJerkOpt = 0.0
+shader_parameter/vertMovementOpt = 0.0
+shader_parameter/bottomStaticOpt = 0.0
+shader_parameter/bottomStaticStrenth = 0.7
+shader_parameter/scalinesOpt = 0.1050000049875
+shader_parameter/rgbOffsetOpt = 0.3350000159125
+shader_parameter/horzFuzzOpt = 0.0470000022325
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vx8ih"]
+shader = ExtResource("9_t2u7g")
+shader_parameter/strength = 0.00400000170348999
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugh17"]
+shader = ExtResource("10_vx8ih")
+shader_parameter/sharpen_amount = 0.400000019
+
+[node name="Level" type="Node2D" unique_id=330900054]
+script = ExtResource("1_wav5q")
+
+[node name="UI" type="Control" parent="." unique_id=1244096383]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.800001, 16.24)
+
+[node name="ScoreLabel" type="Label" parent="UI" unique_id=109089202]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.013888888
+anchor_right = 2.438889
+anchor_bottom = 0.475
+offset_right = 57.0
+offset_bottom = 23.0
+scale = Vector2(0.07, 0.114334986)
+theme_override_font_sizes/font_size = 26
+text = "0"
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelLabel" type="Label" parent="UI" unique_id=1738144027]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.03472222
+anchor_top = 0.07389163
+anchor_right = 0.03472223
+anchor_bottom = 0.07389164
+offset_right = 52.0
+offset_bottom = 20.0
+scale = Vector2(0.07, 0.114334986)
+theme_override_font_sizes/font_size = 14
+text = "Level: X"
+metadata/_edit_use_anchors_ = true
+
+[node name="LivesIcon1" type="Sprite2D" parent="UI" unique_id=2083715492]
+position = Vector2(35.640484, 0.830395)
+scale = Vector2(-0.0019707258, -0.005193745)
+texture = ExtResource("5_uhyyw")
+
+[node name="LivesIcon2" type="Sprite2D" parent="UI" unique_id=1049323572]
+position = Vector2(37.064095, 0.830395)
+scale = Vector2(-0.0019707258, -0.005193745)
+texture = ExtResource("5_uhyyw")
+
+[node name="LivesIcon3" type="Sprite2D" parent="UI" unique_id=1562508454]
+position = Vector2(38.418262, 0.83020425)
+scale = Vector2(-0.0019707258, -0.005193745)
+texture = ExtResource("5_uhyyw")
+
+[node name="Player" parent="." unique_id=1153056723 instance=ExtResource("1_s41d2")]
+position = Vector2(576, 624)
+
+[node name="BorderLimits" type="StaticBody2D" parent="." unique_id=397467753]
+
+[node name="TopBorder" type="CollisionShape2D" parent="BorderLimits" unique_id=1631631503]
+position = Vector2(576, -10)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_gtnvv")
+
+[node name="LeftBorder" type="StaticBody2D" parent="BorderLimits" unique_id=1070490025]
+
+[node name="C_LeftBorder" type="CollisionShape2D" parent="BorderLimits/LeftBorder" unique_id=1059057016]
+position = Vector2(7.9999995, 320)
+scale = Vector2(0.8, 35)
+shape = SubResource("RectangleShape2D_ugh17")
+
+[node name="Sprite2D" type="Sprite2D" parent="BorderLimits/LeftBorder" unique_id=1624280105]
+position = Vector2(8, 320)
+rotation = -3.1415927
+scale = Vector2(0.2640461, 10.812864)
+texture = SubResource("GradientTexture2D_eabcg")
+
+[node name="RightBorder" type="StaticBody2D" parent="BorderLimits" unique_id=630924951]
+
+[node name="RightBorder" type="CollisionShape2D" parent="BorderLimits/RightBorder" unique_id=542502532]
+position = Vector2(1144, 319.99997)
+scale = Vector2(0.8, 35)
+shape = SubResource("RectangleShape2D_ugh17")
+
+[node name="Sprite2D" type="Sprite2D" parent="BorderLimits/RightBorder" unique_id=112502821]
+position = Vector2(1144, 320)
+rotation = -6.2831855
+scale = Vector2(0.2640461, 10.812864)
+texture = SubResource("GradientTexture2D_eabcg")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1149402298]
+z_index = -1
+material = SubResource("ShaderMaterial_bg")
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="DeathZone" type="Area2D" parent="." unique_id=623490265]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone" unique_id=873125297]
+position = Vector2(576, 659)
+shape = SubResource("RectangleShape2D_xto7t")
+debug_color = Color(0.9641985, 0, 0.4970621, 0.41960785)
+
+[node name="Ball" parent="." unique_id=1247975238 instance=ExtResource("2_gtnvv")]
+position = Vector2(575, 465)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=547768816]
+stream = ExtResource("6_t80w2")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1909124501]
+position = Vector2(576, 324)
+
+[node name="Shaders" type="Control" parent="." unique_id=1251620498]
+z_index = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -3.0
+offset_right = 1157.0
+offset_bottom = 654.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Shaders" unique_id=758859270]
+position = Vector2(575.5, 329)
+scale = Vector2(5.8450003, 3.29)
+
+[node name="SD_TV" type="ColorRect" parent="Shaders/BackBufferCopy" unique_id=1590801203]
+material = SubResource("ShaderMaterial_ecu0b")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_t2u7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Shaders" unique_id=1110744614]
+position = Vector2(574.5, 329)
+scale = Vector2(5.8550005, 3.29)
+
+[node name="SD_LensDist" type="ColorRect" parent="Shaders/BackBufferCopy2" unique_id=1938923503]
+material = SubResource("ShaderMaterial_vx8ih")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_t2u7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Shaders" unique_id=1461662834]
+position = Vector2(574.5, 329)
+scale = Vector2(5.8550005, 3.29)
+
+[node name="SD_NTSC" type="ColorRect" parent="Shaders/BackBufferCopy3" unique_id=1235078144]
+material = SubResource("ShaderMaterial_ugh17")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("8_t2u7g")
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseMenu" parent="." unique_id=718354630 instance=ExtResource("11_ugh17")]
+
+[connection signal="body_entered" from="DeathZone" to="Ball" method="_on_death_zone_body_entered"]

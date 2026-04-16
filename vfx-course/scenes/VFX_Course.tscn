@@ -1,0 +1,150 @@
+[gd_scene load_steps=19 format=3 uid="uid://dnqkutj8gh7yh"]
+
+[ext_resource type="Material" uid="uid://2jy28k41lx22" path="res://texture/checkboard.tres" id="1_r0owd"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="2_aycao"]
+[ext_resource type="ArrayMesh" uid="uid://cmswy8js5ghvq" path="res://models/Mountains.obj" id="2_fqc6e"]
+[ext_resource type="Texture2D" uid="uid://dcix7hixca86m" path="res://texture/particle_material.png" id="4_r0owd"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_aycao"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r0owd"]
+size = Vector3(120, 1, 120)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fqc6e"]
+sky_energy_multiplier = 0.65
+
+[sub_resource type="Sky" id="Sky_s2m6d"]
+sky_material = SubResource("ProceduralSkyMaterial_fqc6e")
+
+[sub_resource type="Environment" id="Environment_aycao"]
+background_mode = 2
+background_energy_multiplier = 0.38
+sky = SubResource("Sky_s2m6d")
+glow_enabled = true
+glow_levels/6 = 0.13
+glow_levels/7 = 0.25
+glow_intensity = 0.1
+glow_blend_mode = 0
+glow_hdr_threshold = 0.5
+glow_hdr_scale = 1.5
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0811
+volumetric_fog_albedo = Color(0.243137, 0.243137, 0.243137, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_r0owd"]
+dof_blur_far_enabled = true
+dof_blur_far_distance = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnmy7"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_texture = ExtResource("4_r0owd")
+
+[sub_resource type="Curve" id="Curve_r0owd"]
+_data = [Vector2(0, 0.49438208), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_xnmy7"]
+_limits = [0.0, 3.5, 0.0, 1.0]
+_data = [Vector2(0, 3.5), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jj82x"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_elbl2"]
+curve_x = SubResource("Curve_r0owd")
+curve_y = SubResource("Curve_xnmy7")
+curve_z = SubResource("Curve_jj82x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_aycao"]
+particle_flag_align_y = true
+spread = 15.0
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_min = 0.02
+scale_max = 0.14999999
+scale_curve = SubResource("CurveXYZTexture_elbl2")
+color = Color(4.5, 3.03, 2.071, 1)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.43
+collision_use_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_r0owd"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_r0owd"]
+particle_flag_align_y = true
+flatness = 0.35
+initial_velocity_min = 5.0
+initial_velocity_max = 10.0
+scale_min = 0.02
+scale_max = 0.19999999
+scale_curve = SubResource("CurveXYZTexture_elbl2")
+color = Color(2.4696202, 1.5250208, 4.4993434, 1)
+turbulence_enabled = true
+turbulence_initial_displacement_min = 1.490116e-06
+turbulence_initial_displacement_max = 29.800001
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.43
+collision_use_scale = true
+
+[node name="World" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(120, 0, 0, 0, 1, 0, 0, 0, 120, 0, 0, 0)
+material_override = ExtResource("1_r0owd")
+mesh = SubResource("PlaneMesh_aycao")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("BoxShape3D_r0owd")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Floor"]
+transform = Transform3D(120, 0, 0, 0, 1, 0, 0, 0, 120, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 2.705, 0, 0, 0, 1, 0, 1.421427, 0)
+use_collision = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97748226, 0.21101773, 0, -0.21101773, 0.97748226, 4.0540686, 3.7175655, 4.901262)
+script = ExtResource("2_aycao")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -16.420864, -11.3, -12.605442)
+mesh = ExtResource("2_fqc6e")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_aycao")
+camera_attributes = SubResource("CameraAttributesPractical_r0owd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.84934014, 0.52784604, 0, -0.52784604, 0.84934014, 0, 6.9885883, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="Spark" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.5369191, 1.4525771, 0)
+material_override = SubResource("StandardMaterial3D_xnmy7")
+amount = 40
+speed_scale = 1.2
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_aycao")
+draw_pass_1 = SubResource("QuadMesh_r0owd")
+
+[node name="Spark2" type="GPUParticles3D" parent="."]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.3628373, 1.2651731, 0.10219741)
+material_override = SubResource("StandardMaterial3D_xnmy7")
+amount = 40
+speed_scale = 1.7
+explosiveness = 0.35
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_r0owd")
+draw_pass_1 = SubResource("QuadMesh_r0owd")

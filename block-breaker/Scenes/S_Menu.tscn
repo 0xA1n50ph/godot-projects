@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://da3mbcydc6tfr"]
+
+[ext_resource type="Script" uid="uid://carfw8g8x5hiq" path="res://Scripts/menu.gd" id="1_n0k4w"]
+[ext_resource type="Texture2D" uid="uid://7kwrqty6w2uh" path="res://Textures/mroom_nightl3.png" id="2_cftyg"]
+[ext_resource type="AudioStream" uid="uid://bth21pnl73yg5" path="res://Ost/MainMenu.wav" id="3_4o1al"]
+[ext_resource type="Texture2D" uid="uid://b45fde3y75fcs" path="res://Textures/game-logo.png" id="3_cftyg"]
+[ext_resource type="Shader" uid="uid://cvixww5rfjpe2" path="res://addons/GodotRetro/Screen Shaders/LensDistortion.gdshader" id="4_ht5aa"]
+[ext_resource type="Shader" uid="uid://cr4t4ka3yv5hp" path="res://addons/GodotRetro/Screen Shaders/NTSC.gdshader" id="4_nhg0k"]
+[ext_resource type="Script" uid="uid://co68fg7cnndvg" path="res://Scripts/ShaderReponsiveness.gd" id="5_nhg0k"]
+[ext_resource type="Shader" uid="uid://oc1vxtmx1v48" path="res://addons/GodotRetro/Screen Shaders/TV.gdshader" id="6_phy1t"]
+[ext_resource type="Texture2D" uid="uid://dsrfu3ootv571" path="res://addons/GodotRetro/Other/Images/grain.jpg" id="8_nutde"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cftyg"]
+shader = ExtResource("6_phy1t")
+shader_parameter/vertJerkOpt = 0.0
+shader_parameter/vertMovementOpt = 0.0
+shader_parameter/bottomStaticOpt = 0.0
+shader_parameter/bottomStaticStrenth = 0.7
+shader_parameter/scalinesOpt = 0.2800000133
+shader_parameter/rgbOffsetOpt = 0.3350000159125
+shader_parameter/horzFuzzOpt = 0.0800000038
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k14m8"]
+shader = ExtResource("4_ht5aa")
+shader_parameter/strength = 0.00400000170348999
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u52rn"]
+shader = ExtResource("4_nhg0k")
+shader_parameter/blur_amount = 0.0
+shader_parameter/signal_quality = 0.0
+shader_parameter/bottom_strenth = 0.0
+shader_parameter/grain_tex = ExtResource("8_nutde")
+
+[node name="MainMenu" type="Node2D" unique_id=364479620]
+script = ExtResource("1_n0k4w")
+
+[node name="Control" type="Control" parent="." unique_id=373528278]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control" unique_id=1235184426]
+z_index = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = 112.59
+offset_right = 115.99988
+offset_bottom = 178.59006
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control/VBoxContainer" unique_id=1245481590]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="Control/VBoxContainer" unique_id=1636754851]
+layout_mode = 2
+text = "Exit
+"
+
+[node name="Background" type="Sprite2D" parent="Control" unique_id=444827768]
+z_index = -1
+position = Vector2(574.89, 316)
+scale = Vector2(0.7061351, 0.73129344)
+texture = ExtResource("2_cftyg")
+
+[node name="GameTitle" type="Label" parent="Control" unique_id=1221340750]
+layout_mode = 0
+offset_left = 324.0
+offset_top = 178.0
+offset_right = 828.0
+offset_bottom = 266.0
+theme_override_colors/font_shadow_color = Color(0.086104214, 0.086104214, 0.086104214, 1)
+theme_override_colors/font_outline_color = Color(0.98130625, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 64
+text = "BRIKFORCE"
+horizontal_alignment = 1
+
+[node name="GameLogo" type="Sprite2D" parent="Control" unique_id=575146729]
+visible = false
+position = Vector2(580.00006, 149.00002)
+scale = Vector2(0.44189453, 0.44189453)
+texture = ExtResource("3_cftyg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1657870755]
+stream = ExtResource("3_4o1al")
+volume_db = 2.0
+autoplay = true
+
+[node name="Shaders" type="Control" parent="." unique_id=739537225]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 649.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Shaders" unique_id=1781715472]
+position = Vector2(575.5, 329)
+scale = Vector2(5.8450003, 3.29)
+
+[node name="ColorRect" type="ColorRect" parent="Shaders/BackBufferCopy" unique_id=825521963]
+material = SubResource("ShaderMaterial_cftyg")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_nhg0k")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Shaders" unique_id=1279080270]
+position = Vector2(574.5, 329)
+scale = Vector2(5.8550005, 3.29)
+
+[node name="ColorRect" type="ColorRect" parent="Shaders/BackBufferCopy2" unique_id=343739833]
+material = SubResource("ShaderMaterial_k14m8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_nhg0k")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Shaders" unique_id=2125603675]
+position = Vector2(574.5, 329)
+scale = Vector2(5.8550005, 3.29)
+
+[node name="ColorRect" type="ColorRect" parent="Shaders/BackBufferCopy3" unique_id=397055217]
+visible = false
+material = SubResource("ShaderMaterial_u52rn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_nhg0k")
+metadata/_edit_use_anchors_ = true

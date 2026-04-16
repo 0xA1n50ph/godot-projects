@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://bf37p8j631u4m"]
+
+[ext_resource type="Script" uid="uid://bwm8trpf4g2xa" path="res://scenes/assets/PC_Parts/sm_pc.gd" id="1_1ae5k"]
+[ext_resource type="PackedScene" uid="uid://dy61hp07jxkid" path="res://scenes/assets/PC_Parts/SM_computer_monitor.tscn" id="1_6q0ps"]
+[ext_resource type="PackedScene" uid="uid://cnr3w2nqen5bn" path="res://scenes/assets/PC_Parts/SM_computer_mouse.tscn" id="2_pvhbi"]
+[ext_resource type="PackedScene" uid="uid://6jmtajqm1kx2" path="res://scenes/assets/PC_Parts/SM_computer_keyboard.tscn" id="3_26vrt"]
+[ext_resource type="PackedScene" uid="uid://fxxqssus1xjf" path="res://scenes/assets/PC_Parts/SM_computer_tower.tscn" id="4_pvhbi"]
+[ext_resource type="PackedScene" uid="uid://bcyc4otms0pci" path="res://scenes/assets/PC_Parts/pc_ui.tscn" id="5_26vrt"]
+[ext_resource type="Script" path="res://scripts/Components/Interactables/InteractionStateComponent.gd" id="6_state"]
+[ext_resource type="Script" path="res://scripts/Components/Interactables/CameraTransitionComponent.gd" id="7_camera"]
+[ext_resource type="Script" path="res://scripts/Components/Interactables/VirtualInputComponent.gd" id="8_input"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pvhbi"]
+size = Vector3(1, 0.6007385, 1.065918)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pvhbi"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pvhbi"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvhbi"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_pvhbi")
+emission_enabled = true
+emission_texture = SubResource("ViewportTexture_pvhbi")
+
+[node name="SM_PC" type="StaticBody3D" groups=["computers"]]
+collision_layer = 8
+script = ExtResource("1_1ae5k")
+
+[node name="InteractionStateComponent" type="Node" parent="."]
+script = ExtResource("6_state")
+
+[node name="CameraTransitionComponent" type="Node" parent="."]
+script = ExtResource("7_camera")
+
+[node name="VirtualInputComponent" type="Node" parent="."]
+script = ExtResource("8_input")
+target_viewport_path = NodePath("../SubViewport")
+
+[node name="computer_monitor2" parent="." instance=ExtResource("1_6q0ps")]
+
+[node name="computer_mouse2" parent="." instance=ExtResource("2_pvhbi")]
+transform = Transform3D(0.9789709, 0, 0.20400059, 0, 1, 0, -0.20400059, 0, 0.9789709, 0.54667556, 0, 0.46598205)
+
+[node name="computer_keyboard2" parent="." instance=ExtResource("3_26vrt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.44443834)
+
+[node name="computer_tower2" parent="." instance=ExtResource("4_pvhbi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6610284, 0, -0.12234862)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.29981995, 0.032958984)
+shape = SubResource("BoxShape3D_pvhbi")
+
+[node name="computer_screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.48339468, 0, 0, 0, 0.38414505, 0, 0, 0, 1, 0, 0.3041552, 0.15328199)
+mesh = SubResource("QuadMesh_pvhbi")
+surface_material_override/0 = SubResource("StandardMaterial3D_pvhbi")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+gui_embed_subwindows = true
+size = Vector2i(640, 480)
+
+[node name="pc_ui" parent="SubViewport" instance=ExtResource("5_26vrt")]
+
+[node name="interaction_camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0.43765628)
+size = 0.4
+far = 3.14

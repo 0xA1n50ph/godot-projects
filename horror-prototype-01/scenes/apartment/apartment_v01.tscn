@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://crgun0g81j6rv"]
+
+[ext_resource type="PackedScene" uid="uid://ceobkvo1j8tdp" path="res://glb_imports/apartment_v01.glb" id="1_kw2wb"]
+[ext_resource type="Texture2D" uid="uid://bj8extvjud0rb" path="res://textures/wood/room-wood.png" id="2_vbqap"]
+[ext_resource type="Texture2D" uid="uid://6jv38xb6i0fj" path="res://textures/wood/texture_wood.png" id="3_xdqpv"]
+[ext_resource type="Shader" uid="uid://bgr8cahlqx8qc" path="res://shaders/window_raindrop.gdshader" id="4_nhh2t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xdqpv"]
+albedo_texture = ExtResource("2_vbqap")
+uv1_scale = Vector3(10, 10, 20)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kw2wb"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vbqap"]
+albedo_color = Color(0.54, 0.30024, 0.1512, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nhh2t"]
+albedo_texture = ExtResource("3_xdqpv")
+uv1_scale = Vector3(-1.18, -1.18, -1.18)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vbqap"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg34f"]
+render_priority = 0
+shader = ExtResource("4_nhh2t")
+shader_parameter/dripping_speed = 1.0
+shader_parameter/dripping_wave_size = Vector2(25.78, 4)
+shader_parameter/dripping_wave_freq = Vector2(47, 21.7)
+shader_parameter/dripping_wave_power = Vector2(0.045, 1)
+shader_parameter/static_interval = 4.84
+shader_parameter/static_shift = Vector2(5.105, 0.93)
+shader_parameter/static_wave_size = Vector2(81.522, 85.35)
+shader_parameter/static_wave_freq = Vector2(38, 92.57)
+shader_parameter/static_wave_power = Vector2(2.245, 3.11)
+
+[node name="apartment_v01" unique_id=470934310 instance=ExtResource("1_kw2wb")]
+
+[node name="Floor" parent="." index="0" unique_id=275046230]
+surface_material_override/0 = SubResource("StandardMaterial3D_xdqpv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" index="0" unique_id=726172353]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" index="0" unique_id=505796466]
+shape = SubResource("ConvexPolygonShape3D_kw2wb")
+
+[node name="EastWall" parent="." index="1" unique_id=356146272]
+surface_material_override/0 = SubResource("StandardMaterial3D_vbqap")
+
+[node name="Ceiling" parent="." index="9" unique_id=203446573]
+transform = Transform3D(-4.5, -8.742278e-08, 0, 3.934025e-07, -1, 0, 0, 0, 8.5, 0, 3, 0)
+
+[node name="DoorFrame_002" parent="." index="12" unique_id=364816309]
+surface_material_override/0 = SubResource("StandardMaterial3D_nhh2t")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CorridorFloor" parent_id_path=PackedInt32Array(1845197963) index="0" unique_id=1240464930]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CorridorFloor/StaticBody3D" index="0" unique_id=1324877589]
+shape = SubResource("ConvexPolygonShape3D_vbqap")
+
+[node name="CorridorNorthWall" parent="." index="15" unique_id=2070114563]
+transform = Transform3D(2.7722495, 0, 0, 0, 0, -1.4999999, 0, 2, 0, 7.272024, 1.5, -3.2222252)
+
+[node name="CorridorSouthWall" parent="." index="16" unique_id=1968889129]
+transform = Transform3D(-2.7722495, 1.7484554e-07, 0, 0, 0, -1.4999999, -2.4235777e-07, -2, 0, 7.272024, 1.5, 0.7777748)
+
+[node name="CorridorEastWall" parent="." index="17" unique_id=1634027340]
+transform = Transform3D(-4.2633098e-07, -2, -1.7881396e-07, 0, 2.3841858e-07, -1.4999999, 2.0632372, -4.132641e-07, -3.6948695e-14, 10.022109, 1.5, -1.2222252)
+
+[node name="CorridorCeiling" parent="." index="18" unique_id=1320633273]
+transform = Transform3D(2.7722497, 0, 0, 0, -2, -1.7484555e-07, 0, 1.7484555e-07, -2, 7.272024, 3, -1.2222251)
+
+[node name="WindowGlass" parent="." index="19" unique_id=357521818]
+surface_material_override/0 = SubResource("ShaderMaterial_sg34f")

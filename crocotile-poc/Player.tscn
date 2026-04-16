@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://kcbvgulbwcb2"]
+
+[ext_resource type="Script" uid="uid://b6kur15qmxywr" path="res://player.gd" id="1_xhfnw"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0rwas"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_xhfnw"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=927378963]
+script = ExtResource("1_xhfnw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1206912373]
+mesh = SubResource("CapsuleMesh_0rwas")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1487621332]
+shape = SubResource("CapsuleShape3D_xhfnw")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=705139115]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.71442115, -0.2650705)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Camera3D" unique_id=1050530027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.11521721, -0.36483592)
+light_color = Color(0.96862745, 0.78039217, 0.34117648, 1)
+light_energy = 6.245
+light_indirect_energy = 4.556
+light_size = 0.506
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_length = 6.25
+spot_range = 5.5495505
+spot_angle = 28.125002

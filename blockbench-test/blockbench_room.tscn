@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8essskdbuskx"]
+
+[ext_resource type="PackedScene" uid="uid://c8g3cyc7lk623" path="res://blockbench_assets/room-test.gltf" id="1_w18a0"]
+[ext_resource type="Texture2D" uid="uid://4tnbri7lm5hi" path="res://blockbench_assets/room-test_0.png" id="2_2q33f"]
+[ext_resource type="Material" uid="uid://ce71aqr8llces" path="res://textures/wall.tres" id="3_2q33f"]
+[ext_resource type="Shader" uid="uid://dfsqlc1q3eut8" path="res://glass.gdshader" id="3_4rhde"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3huem"]
+albedo_texture = ExtResource("2_2q33f")
+uv1_scale = Vector3(12, 12, 12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7su54"]
+resource_name = "material_0"
+transparency = 2
+alpha_scissor_threshold = 0.05
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("2_2q33f")
+texture_filter = 0
+texture_repeat = false
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_t0wxo"]
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0)
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ywr7e"]
+resource_name = "blockbench_export_mesh"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 1e-05, 2),
+"attribute_data": PackedByteArray(255, 255, 255, 255, 0, 0, 0, 0, 255, 255, 0, 0, 0, 0, 255, 255),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 0, 0, 3, 0, 1, 0),
+"material": SubResource("StandardMaterial3D_7su54"),
+"name": "material_0",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray(255, 255, 0, 0, 255, 255, 255, 191, 0, 0, 0, 0, 0, 0, 255, 191, 255, 255, 0, 0, 0, 0, 255, 191, 0, 0, 0, 0, 255, 255, 255, 191, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127, 255, 255, 255, 127)
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_t0wxo")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qq77o"]
+render_priority = 0
+shader = ExtResource("3_4rhde")
+shader_parameter/albedo = Color(1, 1, 1, 0)
+shader_parameter/specular = 0.0
+shader_parameter/offset = 0.05
+shader_parameter/opacity = 0.9
+
+[node name="blockbench_export" instance=ExtResource("1_w18a0")]
+
+[node name="floor" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_3huem")
+
+[node name="floor2" type="MeshInstance3D" parent="." index="1"]
+material_override = SubResource("StandardMaterial3D_3huem")
+mesh = SubResource("ArrayMesh_ywr7e")
+skeleton = NodePath("")
+
+[node name="wall_window" parent="." index="2"]
+material_override = ExtResource("3_2q33f")
+
+[node name="wall" parent="." index="3"]
+material_override = ExtResource("3_2q33f")
+
+[node name="wall2" parent="." index="4"]
+material_override = ExtResource("3_2q33f")
+
+[node name="mesh" parent="." index="5"]
+material_override = ExtResource("3_2q33f")
+
+[node name="window" parent="." index="6"]
+transform = Transform3D(0.99999994, 0, 0, 0, -4.3711385e-08, -1, 0, 0.99999994, -4.371139e-08, 0, 0.25, -1)
+material_override = SubResource("ShaderMaterial_qq77o")

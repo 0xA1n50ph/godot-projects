@@ -1,0 +1,118 @@
+[gd_scene format=3 uid="uid://dn5jak4fwxbr5"]
+
+[ext_resource type="Script" uid="uid://cggl1hekdkvol" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://4ajhgcxsbrq6" path="res://scripts/Components/InputComponent.gd" id="2_g2els"]
+[ext_resource type="Script" uid="uid://c0jqsq1gsfse6" path="res://scripts/Components/AnimationComponent.gd" id="3_qhqgy"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_3vyb7"]
+radius = 0.05
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
+radius = 0.4
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_3vyb7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u8vuu"]
+albedo_color = Color(0.8483255, 0, 0.07478858, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u8vuu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3vyb7"]
+albedo_color = Color(0.6052743, 0.6052743, 0.6052743, 1)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3vyb7"]
+streams_count = 1
+
+[sub_resource type="Animation" id="Animation_g2els"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraHolder/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3vyb7"]
+resource_name = "headbob_walk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CameraHolder/Camera3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.05, 0.05, 0), Vector3(0, 0, 0), Vector3(-0.05, 0.05, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g2els"]
+_data = {
+&"RESET": SubResource("Animation_g2els"),
+&"headbob_walk": SubResource("Animation_3vyb7")
+}
+
+[node name="Player" type="CharacterBody3D" unique_id=1732023552]
+collision_mask = 6
+script = ExtResource("1_3vyb7")
+CROUCH_SPEED = 0.92
+CROUCH_HEIGHT = 0.575
+
+[node name="InputComponent" type="Node" parent="." unique_id=2104131837]
+unique_name_in_owner = true
+script = ExtResource("2_g2els")
+metadata/_custom_type_script = "uid://4ajhgcxsbrq6"
+
+[node name="AnimationComponent" type="Node" parent="." unique_id=1577538871]
+unique_name_in_owner = true
+script = ExtResource("3_qhqgy")
+metadata/_custom_type_script = "uid://c0jqsq1gsfse6"
+
+[node name="CameraHolder" type="Node3D" parent="." unique_id=548704740]
+
+[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=1275504368]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+current = true
+fov = 85.4
+
+[node name="FrontCheckShapeCast3D" type="ShapeCast3D" parent="CameraHolder/Camera3D" unique_id=1061691095]
+shape = SubResource("SphereShape3D_3vyb7")
+target_position = Vector3(0, 0, -1)
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=341429500]
+shape = SubResource("CapsuleShape3D_u8vuu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1582156897]
+visible = false
+mesh = SubResource("CapsuleMesh_3vyb7")
+skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_u8vuu")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=588455084]
+transform = Transform3D(0.38150233, 0, 0, 0, 0.23602587, 0, 0, 0, 0.4782611, 0, 0.47265172, 0.5172211)
+visible = false
+mesh = SubResource("BoxMesh_u8vuu")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_3vyb7")
+
+[node name="TopCheckRayCast" type="RayCast3D" parent="." unique_id=443573781]
+target_position = Vector3(0, 1.2, 0)
+collision_mask = 4
+debug_shape_custom_color = Color(0.5547623, 0.00022265286, 0.5547584, 1)
+
+[node name="FootstepAudio3D" type="AudioStreamPlayer3D" parent="." unique_id=1369271362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+stream = SubResource("AudioStreamRandomizer_3vyb7")
+
+[node name="HeadbobAnim" type="AnimationPlayer" parent="." unique_id=213469604]
+unique_name_in_owner = true
+libraries/ = SubResource("AnimationLibrary_g2els")

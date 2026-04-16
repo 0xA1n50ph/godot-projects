@@ -1,0 +1,217 @@
+[gd_scene format=3 uid="uid://bed5yt0jmvdd1"]
+
+[ext_resource type="PackedScene" uid="uid://bu5e0h1km6wsi" path="res://scenes/assets/modular_building/SM_roadwithside_01.tscn" id="1_gfq6j"]
+[ext_resource type="Texture2D" uid="uid://6jv38xb6i0fj" path="res://textures/wood/texture_wood.png" id="2_ycy2b"]
+[ext_resource type="Texture2D" uid="uid://bj8extvjud0rb" path="res://textures/wood/room-wood.png" id="3_a17vn"]
+[ext_resource type="PackedScene" uid="uid://dqdcdaotwxgmx" path="res://scenes/assets/SM_torch_v1.tscn" id="4_c8yoi"]
+[ext_resource type="PackedScene" uid="uid://dkw82oyjcjddo" path="res://scenes/assets/PROTO_apartment.tscn" id="5_ttu15"]
+[ext_resource type="PackedScene" uid="uid://dn5jak4fwxbr5" path="res://scenes/player.tscn" id="6_t2vkh"]
+[ext_resource type="Texture2D" uid="uid://cuhs8spgw5rp2" path="res://textures/prototype/grid.png" id="7_dy6jr"]
+[ext_resource type="Script" uid="uid://yjwpq5js61b3" path="res://levels/prototype_shaders.gd" id="9_t2vkh"]
+[ext_resource type="Shader" uid="uid://btltmxqcomlii" path="res://addons/GodotRetro/Screen Shaders/Aditional Shaders/Dithering.gdshader" id="12_seiqs"]
+[ext_resource type="PackedScene" uid="uid://bf37p8j631u4m" path="res://scenes/assets/PC_Parts/SM_PC.tscn" id="12_ttu15"]
+[ext_resource type="Script" uid="uid://cdmsbw7i58am4" path="res://scripts/ShaderReponsiveness.gd" id="13_0m0nf"]
+[ext_resource type="PackedScene" uid="uid://crgun0g81j6rv" path="res://scenes/apartment/apartment_v01.tscn" id="14_dy6jr"]
+[ext_resource type="Shader" uid="uid://uhemkdspoqb7" path="res://addons/GodotRetro/Screen Shaders/Grain.gdshader" id="14_lf46q"]
+[ext_resource type="PackedScene" uid="uid://dwlmuh2a7tcsu" path="res://scenes/assets/SM_table01.tscn" id="15_seiqs"]
+[ext_resource type="Shader" uid="uid://d1xkbyt6oy6pv" path="res://addons/GodotRetro/Screen Shaders/Aditional Shaders/BetterCC.gdshader" id="15_sknl5"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dy6jr"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_seiqs"]
+sky_material = SubResource("ProceduralSkyMaterial_dy6jr")
+
+[sub_resource type="Environment" id="Environment_0m0nf"]
+background_mode = 2
+sky = SubResource("Sky_seiqs")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mfge"]
+albedo_texture = ExtResource("2_ycy2b")
+emission = Color(0.57700837, 0.5770084, 0.57700837, 1)
+uv1_scale = Vector3(16.59, 16.59, 16.59)
+uv1_offset = Vector3(0.2, 0.755, 0)
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wduts"]
+albedo_texture = ExtResource("3_a17vn")
+uv1_scale = Vector3(1.935, 1.935, 1.935)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qj2g"]
+albedo_texture = ExtResource("7_dy6jr")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ttu15"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t2vkh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_umtg1"]
+shader = ExtResource("12_seiqs")
+shader_parameter/SCREEN_WIDTH = 320.0
+shader_parameter/COLOR_FACTOR = 10.0
+shader_parameter/DITHERING_STRENTH = 0.006000000285
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1s2j3"]
+shader = ExtResource("14_lf46q")
+shader_parameter/colored = false
+shader_parameter/color_amount = 0.69600003306
+shader_parameter/grain_amount = 0.0330000015675
+shader_parameter/grain_size = 1.30000001425
+shader_parameter/lum_amount = 1.3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o6lf5"]
+shader = ExtResource("15_sknl5")
+shader_parameter/Shadows = Color(0, 0, 0, 1)
+shader_parameter/Midtones = Color(0, 0.086, 0.12, 1)
+shader_parameter/Hilights = Color(0.2268, 0.25871998, 0.28, 1)
+
+[node name="World" type="Node3D" unique_id=1746377321]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=694587405]
+environment = SubResource("Environment_0m0nf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1922248800]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MockTexture1" type="CSGBox3D" parent="." unique_id=131760892]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 22, 28)
+material_override = SubResource("StandardMaterial3D_4mfge")
+use_collision = true
+size = Vector3(32, 0.1, 32)
+
+[node name="MockTexture2" type="CSGBox3D" parent="." unique_id=219255692]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 34, 21.900002, 28)
+material_override = SubResource("StandardMaterial3D_wduts")
+use_collision = true
+size = Vector3(32, 0.1, 32)
+
+[node name="torch_v1" parent="." unique_id=466886322 instance=ExtResource("4_c8yoi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.3, 8)
+
+[node name="Apartment" parent="." unique_id=963406178 instance=ExtResource("5_ttu15")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 46.690178, 22, 0)
+
+[node name="Player" parent="." unique_id=1017544541 instance=ExtResource("6_t2vkh")]
+transform = Transform3D(1.3411045e-07, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.3411045e-07, 78.700005, 22.099998, -1)
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1989678512]
+use_collision = true
+collision_layer = 4
+collision_mask = 11
+size = Vector3(1000, 0.1, 1000)
+material = SubResource("StandardMaterial3D_1qj2g")
+
+[node name="Roads" type="Node3D" parent="." unique_id=927702702]
+
+[node name="roadwithside_01" parent="Roads" unique_id=213730978 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 6)
+
+[node name="roadwithside_02" parent="Roads" unique_id=1704377814 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -3.4)
+
+[node name="roadwithside_03" parent="Roads" unique_id=578038377 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -14.7322235)
+
+[node name="roadwithside_04" parent="Roads" unique_id=1443835702 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -24.132223)
+
+[node name="roadwithside_09" parent="Roads" unique_id=852794010 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -35.54946)
+
+[node name="roadwithside_10" parent="Roads" unique_id=261558761 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -44.949463)
+
+[node name="roadwithside_11" parent="Roads" unique_id=1314605376 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -56.281685)
+
+[node name="roadwithside_12" parent="Roads" unique_id=1440695431 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, -65.68169)
+
+[node name="roadwithside_05" parent="Roads" unique_id=1849369206 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 47.52184)
+
+[node name="roadwithside_06" parent="Roads" unique_id=1252509169 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 38.121838)
+
+[node name="roadwithside_13" parent="Roads" unique_id=1238296077 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 68.26928)
+
+[node name="roadwithside_14" parent="Roads" unique_id=181653209 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 58.869274)
+
+[node name="roadwithside_07" parent="Roads" unique_id=1787917113 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 26.789616)
+
+[node name="roadwithside_08" parent="Roads" unique_id=1897817808 instance=ExtResource("1_gfq6j")]
+transform = Transform3D(-1.2676303e-07, 0, -2.9, 0, 2.9, 0, 2.9, 0, -1.2676303e-07, 62.721886, 0.1, 17.389616)
+
+[node name="SM_PC" parent="." unique_id=573601300 instance=ExtResource("12_ttu15")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 79.7, 22.92475, 2)
+
+[node name="CollectibleTest" type="StaticBody3D" parent="." unique_id=1488476549 groups=["collectible"]]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 76.600006, 23, -3.1000004)
+collision_layer = 8
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollectibleTest" unique_id=645521792]
+mesh = SubResource("BoxMesh_ttu15")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectibleTest" unique_id=1748179301]
+shape = SubResource("BoxShape3D_t2vkh")
+
+[node name="Shaders" type="Control" parent="." unique_id=1170550075]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
+script = ExtResource("9_t2vkh")
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Shaders" unique_id=285300592]
+position = Vector2(322.5, 240)
+scale = Vector2(3.225, 2.41)
+
+[node name="Dithering" type="ColorRect" parent="Shaders/BackBufferCopy" unique_id=1426763018]
+material = SubResource("ShaderMaterial_umtg1")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -100.0
+offset_right = -100.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("13_0m0nf")
+metadata/_edit_use_anchors_ = true
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="Shaders" unique_id=1049807863]
+
+[node name="Grain" type="ColorRect" parent="Shaders/BackBufferCopy2" unique_id=1535580668]
+material = SubResource("ShaderMaterial_1s2j3")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_0m0nf")
+
+[node name="BackBufferCopy3" type="BackBufferCopy" parent="Shaders" unique_id=11515847]
+
+[node name="ColorCorrection" type="ColorRect" parent="Shaders/BackBufferCopy3" unique_id=247829404]
+material = SubResource("ShaderMaterial_o6lf5")
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_0m0nf")
+
+[node name="apartment_v01" parent="." unique_id=470934310 instance=ExtResource("14_dy6jr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.9, 22, -0.2000001)
+
+[node name="pc_table" parent="." unique_id=1281605484 instance=ExtResource("15_seiqs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.6, 22, 2.2)

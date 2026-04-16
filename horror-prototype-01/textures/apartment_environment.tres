@@ -1,0 +1,21 @@
+[gd_resource type="Environment" format=3 uid="uid://dryk7kicemx02"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.024132041, 0.031629924, 0.09751614, 1)
+tonemap_mode = 2
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+fog_enabled = true
+fog_mode = 1
+fog_light_energy = 0.67
+fog_density = 0.5979
+fog_depth_curve = 0.5358875
+volumetric_fog_density = 0.066
+volumetric_fog_anisotropy = -0.9
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 0.84

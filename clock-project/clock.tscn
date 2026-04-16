@@ -1,0 +1,119 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvbk2f6kc3bnr"]
+
+[ext_resource type="Script" uid="uid://cytv3jkc6ohgg" path="res://clock.gd" id="1_venu5"]
+[ext_resource type="Shader" uid="uid://b8klfsjo20lmh" path="res://ClockShader.gdshader" id="2_kig64"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_venu5"]
+bounce = 0.25
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_venu5"]
+radius = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_venu5"]
+shader = ExtResource("2_kig64")
+
+[sub_resource type="Gradient" id="Gradient_5rrw5"]
+offsets = PackedFloat32Array(0.9866667, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_venu5"]
+gradient = SubResource("Gradient_5rrw5")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="ClockScene" type="Node2D"]
+
+[node name="Clock" type="RigidBody2D" parent="." node_paths=PackedStringArray("collision_shape", "visualization", "hour_arm", "minute_arm", "second_arm")]
+physics_material_override = SubResource("PhysicsMaterial_venu5")
+script = ExtResource("1_venu5")
+collision_shape = NodePath("CollisionCircle")
+visualization = NodePath("Visualization")
+hour_arm = NodePath("HourArm")
+minute_arm = NodePath("MinuteArm")
+second_arm = NodePath("SecondArm")
+
+[node name="CollisionCircle" type="CollisionShape2D" parent="Clock"]
+shape = SubResource("CircleShape2D_venu5")
+
+[node name="Visualization" type="Sprite2D" parent="Clock"]
+material = SubResource("ShaderMaterial_venu5")
+texture = SubResource("GradientTexture2D_venu5")
+
+[node name="Hour0" type="Polygon2D" parent="Clock/Visualization"]
+color = Color(0.3254902, 0.3254902, 0.3254902, 1)
+polygon = PackedVector2Array(-12, -120, 12, -120, 0, -108)
+
+[node name="Hour1" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 0.5235988
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour2" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 1.0471976
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour3" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 1.5707964
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour4" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 2.0943952
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour5" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 2.0943952
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour6" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 2.6179938
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour7" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 3.1415927
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour8" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 3.6651914
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour9" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 4.1887903
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour10" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 4.712389
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour11" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 5.2359877
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="Hour12" type="Polygon2D" parent="Clock/Visualization"]
+rotation = 5.7595863
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, -120, 8, -120, 0, -112)
+
+[node name="SecondArm" type="Polygon2D" parent="Clock"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-3, 16, 3, 16, 2, -24, 0, -104, -2, -24)
+
+[node name="MinuteArm" type="Polygon2D" parent="Clock"]
+color = Color(0.32544088, 0.3254409, 0.32544082, 1)
+polygon = PackedVector2Array(-8, 16, 8, 16, 8, -24, 0, -104, -8, -24)
+
+[node name="HourArm" type="Polygon2D" parent="Clock"]
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-8, 16, 8, 16, 8, -24, 0, -72, -8, -24)
