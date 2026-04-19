@@ -39,7 +39,8 @@ func send_message():
 		return
 	
 	var msg: String = typing_msg_line_edit.text
-	receive_message(msg)
+	# receive_message(msg)
+	ServerChatRpc.receive_message.rpc(msg)
 	
 	typing_msg_line_edit.clear()
 

@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnc7h6xdn8j2b"]
+[gd_scene format=3 uid="uid://cnc7h6xdn8j2b"]
 
 [ext_resource type="Script" uid="uid://belcho33sfd5r" path="res://ui/start_connect_menu.gd" id="1_3om0k"]
 
-[node name="StartConnectMenu" type="Control"]
+[node name="StartConnectMenu" type="Control" unique_id=1431045725]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_3om0k")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=898035261]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,72 +23,73 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=122065406]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=278004597]
 layout_mode = 2
-text = "Multiplayer Basics Workshop for GodotCon Boston 2025"
+text = "Multiplayer Basics Workshop"
 horizontal_alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=161063769]
+visible = false
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1811819811]
 layout_mode = 2
 text = "Player Name"
 
-[node name="PlayerNameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+[node name="PlayerNameEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=135411104]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 placeholder_text = "your name"
 
-[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer" unique_id=1532661948]
 modulate = Color(1, 1, 1, 0)
-custom_minimum_size = Vector2(0, 64)
+custom_minimum_size = Vector2(0, 18)
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1384086548]
 layout_mode = 2
 alignment = 1
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1503898802]
 layout_mode = 2
-theme_override_constants/v_separation = 32
+theme_override_constants/v_separation = 18
 columns = 4
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1022707510]
 layout_mode = 2
 text = "Host Game"
 
-[node name="seperator" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="seperator" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=400264334]
 layout_mode = 2
 
-[node name="HostPort" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="HostPort" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1752119112]
 layout_mode = 2
 text = "25026"
 placeholder_text = "PORT"
 
-[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="HostButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=546967391]
 layout_mode = 2
 text = "Host"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1321241762]
 layout_mode = 2
 text = "Join Game"
 
-[node name="JoinIp" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="JoinIp" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=2108548645]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "localhost"
 placeholder_text = "ip"
 
-[node name="JoinPort" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="JoinPort" type="LineEdit" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1286930648]
 layout_mode = 2
 text = "25026"
 placeholder_text = "PORT"
 
-[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+[node name="JoinButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer" unique_id=1106063877]
 layout_mode = 2
 text = "join"

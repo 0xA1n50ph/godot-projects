@@ -9,6 +9,7 @@ extends Node
 @onready var peer_id_label: Label = $"../PanelContainer/MarginContainer/VBoxContainer/PeerIdLabel"
 @onready var player_sprite: Sprite2D = $"../PlayerSprite"
 @onready var chat_ui: ChatUI = $"../Camera2D/ChatUi"
+@onready var camera2D := $"../Camera2D"
 
 
 ## Speed of the player in pixels per second
@@ -17,13 +18,21 @@ var can_move: bool = true
 
 
 func _ready():
+	if not is_multiplayer_authority():
+		camera2D.queue_free()
+
+	player_name_label.text = ClientGlobals.client_name
 	if chat_ui != null:
 		chat_ui.start_chat.connect(func(): can_move = false)
 		chat_ui.stop_chat.connect(func(): can_move = true)
 	pass
 
+func _process(delta: float) -> void:
+	peer_id_label.text = str(get_multiplayer_authority())
+	return
 
 func _physics_process(_delta: float):
+	if not is_multiplayer_authority(): return
 	if not can_move: return
 	var direction: Vector2 = Input.get_vector("move_left", "move_right", "move_up", 
 		"move_down").normalized()

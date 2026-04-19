@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dmk068mfcujh2"]
+[gd_scene format=3 uid="uid://dmk068mfcujh2"]
 
 [ext_resource type="Script" uid="uid://jlprxag0dt5k" path="res://entities/torch.gd" id="1_kyii1"]
 [ext_resource type="Texture2D" uid="uid://bykictlxgul72" path="res://assets/kenney_assets/environment/medievalEnvironment_04.png" id="2_kyii1"]
@@ -41,21 +41,30 @@ _data = {
 &"torch_burning": SubResource("Animation_kyii1")
 }
 
-[node name="Torch" type="Node2D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_kyii1"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath("FlameSprite:visible")
+properties/1/spawn = true
+properties/1/replication_mode = 2
+
+[node name="Torch" type="Node2D" unique_id=66263769]
 script = ExtResource("1_kyii1")
 
-[node name="TorchSprite" type="Sprite2D" parent="."]
+[node name="TorchSprite" type="Sprite2D" parent="." unique_id=786134989]
 position = Vector2(0, -83)
 scale = Vector2(1, 2.005)
 texture = ExtResource("2_kyii1")
 
-[node name="FlameSprite" type="Sprite2D" parent="."]
+[node name="FlameSprite" type="Sprite2D" parent="." unique_id=939019727]
 visible = false
 position = Vector2(0, -63)
 texture = ExtResource("3_ostqq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_4irgs")
-}
-autoplay = "torch_burning"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=276843696]
+libraries/ = SubResource("AnimationLibrary_4irgs")
+autoplay = &"torch_burning"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=395566193]
+replication_config = SubResource("SceneReplicationConfig_kyii1")

@@ -1,8 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://01tmnbmsfsnf"]
+[gd_scene format=3 uid="uid://01tmnbmsfsnf"]
 
 [ext_resource type="Texture2D" uid="uid://ddf0nv4i304v7" path="res://assets/godotcon_assets/godoot_sprite.png" id="1_b0kkn"]
 [ext_resource type="Script" uid="uid://laaa2vdnnx3f" path="res://entities/player_controller.gd" id="2_b0kkn"]
 [ext_resource type="PackedScene" uid="uid://bd32y81wfxa4l" path="res://ui/chat_ui.tscn" id="3_e4p34"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e4p34"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wwbr7"]
 radius = 29.0
@@ -99,54 +104,55 @@ _data = {
 &"walking": SubResource("Animation_rfe5m")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=56494954]
 collision_layer = 2
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=544426270]
+replication_config = SubResource("SceneReplicationConfig_e4p34")
+
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1734833368]
 modulate = Color(1, 0.619608, 0.2, 1)
 position = Vector2(3, -6)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_b0kkn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2100968036]
 position = Vector2(-1, 9)
 shape = SubResource("CircleShape2D_wwbr7")
 
-[node name="PlayerController" type="Node" parent="."]
+[node name="PlayerController" type="Node" parent="." unique_id=1366456319]
 script = ExtResource("2_b0kkn")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1051627862]
 zoom = Vector2(0.8, 0.8)
 
-[node name="ChatUi" parent="Camera2D" instance=ExtResource("3_e4p34")]
+[node name="ChatUi" parent="Camera2D" unique_id=651037050 instance=ExtResource("3_e4p34")]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_rfe5m")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1180496005]
+libraries/ = SubResource("AnimationLibrary_rfe5m")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1440591330]
 offset_left = -54.0
 offset_top = -122.0
 offset_right = 53.0
 offset_bottom = -60.0
 
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1565446577]
 layout_mode = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 6
 theme_override_constants/margin_bottom = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=2052969232]
 layout_mode = 2
 
-[node name="PlayerNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PlayerNameLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1610177686]
 layout_mode = 2
 text = "PlayerName"
 horizontal_alignment = 1
 
-[node name="PeerIdLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer"]
+[node name="PeerIdLabel" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=913900595]
 layout_mode = 2
 text = "Peer Id"
 horizontal_alignment = 1

@@ -1,21 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://xhma3wlrqehr"]
+[gd_scene format=3 uid="uid://xhma3wlrqehr"]
 
 [ext_resource type="PackedScene" uid="uid://bbt71rqh7m6g5" path="res://levels/castle_level.tscn" id="1_q3u5y"]
-[ext_resource type="PackedScene" uid="uid://01tmnbmsfsnf" path="res://entities/player.tscn" id="2_ooffa"]
+[ext_resource type="Script" uid="uid://0dnrhcwx2qa8" path="res://components/game_tree.gd" id="1_qu4p1"]
+[ext_resource type="Script" uid="uid://d3phi0uuy42bq" path="res://components/players_manager.gd" id="3_ar0u2"]
 [ext_resource type="Script" uid="uid://bxmh3qxko2oq8" path="res://ui/gui_mgr.gd" id="3_t4jwi"]
 [ext_resource type="PackedScene" uid="uid://cnc7h6xdn8j2b" path="res://ui/start_connect_menu.tscn" id="4_d04qd"]
+[ext_resource type="Script" uid="uid://fibs6om25pm7" path="res://components/enet_server.gd" id="5_d04qd"]
+[ext_resource type="Script" uid="uid://bgwpq2ns5lpk5" path="res://components/server_connector.gd" id="7_ar0u2"]
 
-[node name="GameTree" type="Node"]
+[node name="GameTree" type="Node" unique_id=1521350916]
+script = ExtResource("1_qu4p1")
 
-[node name="Level" type="Node" parent="."]
+[node name="Level" type="Node" parent="." unique_id=532671158]
 
-[node name="CastleLevel" parent="Level" instance=ExtResource("1_q3u5y")]
+[node name="CastleLevel" parent="Level" unique_id=1347527035 instance=ExtResource("1_q3u5y")]
 
-[node name="PlayersMgr" type="Node" parent="."]
+[node name="PlayersMgr" type="Node" parent="." unique_id=1750201162]
+script = ExtResource("3_ar0u2")
 
-[node name="Player" parent="PlayersMgr" instance=ExtResource("2_ooffa")]
-
-[node name="GuiMgr" type="Node" parent="."]
+[node name="GuiMgr" type="Node" parent="." unique_id=626691732]
 script = ExtResource("3_t4jwi")
 
-[node name="StartConnectMenu" parent="GuiMgr" instance=ExtResource("4_d04qd")]
+[node name="StartConnectMenu" parent="GuiMgr" unique_id=224445385 instance=ExtResource("4_d04qd")]
+
+[node name="Server" type="Node" parent="." unique_id=468369087]
+
+[node name="EnetServer" type="Node" parent="Server" unique_id=1277902920]
+script = ExtResource("5_d04qd")
+
+[node name="ServerConnector" type="Node" parent="Server" unique_id=1568828370]
+script = ExtResource("7_ar0u2")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=630860032]
+_spawnable_scenes = PackedStringArray("uid://dmtsdycev6jll")
+spawn_path = NodePath("../PlayersMgr")

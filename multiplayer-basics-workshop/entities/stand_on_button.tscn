@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmqlu7fe6kdui"]
+[gd_scene format=3 uid="uid://bmqlu7fe6kdui"]
 
 [ext_resource type="Script" uid="uid://cptxv4baw3i6y" path="res://entities/stand_on_button.gd" id="1_d62mg"]
 [ext_resource type="Texture2D" uid="uid://b81a3btscbuoa" path="res://assets/button.png" id="2_d62mg"]
@@ -44,24 +44,30 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_ng5be"]
 radius = 48.0416
 
-[node name="StandOnButton" type="Node2D"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_d62mg"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="StandOnButton" type="Node2D" unique_id=715110580]
 script = ExtResource("1_d62mg")
 
-[node name="BehindSprite" type="Sprite2D" parent="."]
+[node name="BehindSprite" type="Sprite2D" parent="." unique_id=245711815]
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_d62mg")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=942407434]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_d62mg")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_d62mg")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=487970578]
+libraries/ = SubResource("AnimationLibrary_d62mg")
 
-[node name="DetectStanderArea" type="Area2D" parent="."]
+[node name="DetectStanderArea" type="Area2D" parent="." unique_id=897484648]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectStanderArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectStanderArea" unique_id=669142580]
 shape = SubResource("CircleShape2D_ng5be")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." unique_id=987440974]
+replication_config = SubResource("SceneReplicationConfig_d62mg")
